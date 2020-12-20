@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">DigitalNX Client</string>
+
+    <string name="about_fragment_title">About the project</string>
+    <string name="about_fragment_content">DigitalNX is an open-source IoT project containing device code, back-end/front-end and all the necessary code to run a basic IoT setup with corresponding guides.
+        The design goal of this project was to build a platform with simple design while being easily expandable for new devices and widgets.\nFor more info and documentation visit:</string>
+    <string name="projects_web_address"><a href="http://www.github.com/DigitalNX">http://www.github.com/DigitalNX</a></string>
+    <string name="nav_header_subtitle">Open-source IoT project</string>
+
+    <string name="new_note_title">New Note</string>
+    <string name="new_note_form_title">Title</string>
+    <string name="new_note_form_content">Content</string>
+
+    <string name="login_activity_form_text">Please Login</string>
+    <string name="login_activity_backend_address_field">Server e.g. 192.168.1.2</string>
+    <string name="login_activity_username_field">Username</string>
+    <string name="login_activity_password_field">Password</string>
+    <string name="login_activity_login_button">Login</string>
+
+    <!-- Settings strings -->
+    <string name="android_app_version_string">Android App ver: %1$s</string>
+    <string name="backend_version_string">Backend ver: %1$s</string>
+    <string name="logged_in_as_string">Logged in as: <b>%1$s</b></string>
+</resources>
