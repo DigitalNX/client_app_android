@@ -37,19 +37,10 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
         queue = Volley.newRequestQueue(requireActivity());
         homeLayout = (LinearLayout) rootView.findViewById(R.id.home);
-
         grabInfo();
 
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return rootView;
     }
 

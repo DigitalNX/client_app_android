@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_menu_relays"
             android:title="Relays" />
         <item
+            android:id="@+id/nav_sensors"
+            android:icon="@drawable/ic_menu_sensors"
+            android:title="Sensors" />
+        <item
             android:id="@+id/nav_notes"
             android:icon="@drawable/ic_menu_notes"
             android:title="Notes" />

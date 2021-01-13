@@ -2,6 +2,7 @@ package com.digitalnx.digitalnxclient;
 
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.hardware.Sensor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import com.digitalnx.digitalnxclient.ui.about.AboutFragment;
 import com.digitalnx.digitalnxclient.ui.home.HomeFragment;
 import com.digitalnx.digitalnxclient.ui.notes.NotesFragment;
 import com.digitalnx.digitalnxclient.ui.relays.RelaysFragment;
+import com.digitalnx.digitalnxclient.ui.sensors.SensorFragment;
 import com.digitalnx.digitalnxclient.ui.settings.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_relays, R.id.nav_notes, R.id.nav_about, R.id.nav_settings)
+                R.id.nav_home, R.id.nav_relays, R.id.nav_sensors, R.id.nav_notes, R.id.nav_about, R.id.nav_settings)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_notes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new NotesFragment()).commit();
+                break;
+            case R.id.nav_sensors:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new SensorFragment()).commit();
                 break;
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new AboutFragment()).commit();

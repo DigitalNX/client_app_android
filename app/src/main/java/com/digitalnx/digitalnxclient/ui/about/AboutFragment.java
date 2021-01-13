@@ -46,6 +46,7 @@ public class AboutFragment extends Fragment {
         aboutContent.setTextColor(Color.parseColor("#666666"));
         aboutContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
         aboutContent.setPadding(0,0,0, 10);
+        aboutContent.setSingleLine(false);
 
         aboutContentLink.setText(R.string.projects_web_address);
         aboutContentLink.setMovementMethod(LinkMovementMethod.getInstance());

@@ -1,5 +1,6 @@
 package com.digitalnx.digitalnxclient.ui.relays;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -49,6 +50,7 @@ public class RelaysFragment extends Fragment {
                     TextView relayGroupTitle = new TextView(getActivity());
                     relayGroupTitle.setText(jsonObj.get("group_name").toString());
                     relayGroupTitle.setTypeface(null, Typeface.BOLD);
+                    relayGroupTitle.setTextColor(Color.parseColor("#000000"));
                     relayGroupTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
                     relayGroupTitle.setPadding(22, 50, 0, 30);
                     articleLayout.addView(relayGroupTitle);
@@ -66,7 +68,7 @@ public class RelaysFragment extends Fragment {
                         toggle.setTextOff(relay.get("device_name").toString() + ": Off");
                         if (!(Boolean) relay.get("status")) {
                             toggle.setText(relay.get("device_name").toString() + ": Off");
-                            // TODO SET STATE TOO
+                            // TODO: SET STATE TOO
 
                         } else if (!(Boolean) relay.get("status")) {
                             toggle.setText(relay.get("device_name").toString() + ": On");
