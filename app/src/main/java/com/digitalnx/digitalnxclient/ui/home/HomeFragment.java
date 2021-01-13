@@ -1,13 +1,16 @@
 package com.digitalnx.digitalnxclient.ui.home;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -61,6 +64,7 @@ public class HomeFragment extends Fragment {
         }, "/api/info_data", queue);
     }
 
+    @SuppressLint("SetTextI18n")
     private void renderInfo() {
         for(int i = 0; i < infoArrayJSON.length(); i++) {
             try {
@@ -82,17 +86,65 @@ public class HomeFragment extends Fragment {
                     infoItemTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
                     infoItemTitle.setPadding(10, 50, 10, 7);
                     infoItemLayout.addView(infoItemTitle);
+                    if(infoItemJSON.get("type").toString().equals("SENSOR")) {
+                        for(int k = 0; k < contentJSON.length(); k++) {
+                            JSONObject item = (JSONObject) contentJSON.get(k);
+                            String sensorType = item.get("sensor_type").toString();
+                            LinearLayout itemContentLayout = new LinearLayout(getActivity());
 
-                    for(int k = 0; k < contentJSON.length(); k++) {
-                        String content = contentJSON.get(k).toString();
-                        TextView contentView = new TextView(getActivity());
-                        contentView.setText(content);
-                        contentView.setTextColor(Color.parseColor("#666666"));
-                        contentView.setTypeface(null, Typeface.NORMAL);
-                        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
-                        contentView.setPadding(5, 10, 0, 7);
-                        infoItemLayout.addView(contentView);
+                            if(sensorType.equals("BOOLEAN")) {
+                                Switch switchBtn = new Switch(getContext());
+                                switchBtn.setClickable(false);
+
+                                TextView buttonTitle = new TextView(getActivity());
+                                buttonTitle.setText(item.get("device_name").toString());
+                                buttonTitle.setTextColor(Color.parseColor("#666666"));
+                                buttonTitle.setTypeface(null, Typeface.NORMAL);
+                                buttonTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                                buttonTitle.setPadding(5, 10, 0, 7);
+
+                                if((Boolean) item.get("value"))
+                                    switchBtn.setChecked(true);
+                                else
+                                    switchBtn.setChecked(false);
+
+                                itemContentLayout.addView(buttonTitle);
+                                itemContentLayout.addView(switchBtn);
+
+                            } else if (sensorType.equals("FLOATING_POINT")) {
+                                TextView sensorTitle = new TextView(getActivity());
+                                sensorTitle.setText(item.get("device_name").toString() + ": ");
+                                sensorTitle.setTextColor(Color.parseColor("#666666"));
+                                sensorTitle.setTypeface(null, Typeface.NORMAL);
+                                sensorTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                                sensorTitle.setPadding(5, 10, 0, 7);
+
+                                TextView contentView = new TextView(getActivity());
+                                contentView.setText(item.get("value").toString());
+                                contentView.setTextColor(Color.parseColor("#666666"));
+                                contentView.setTypeface(null, Typeface.BOLD);
+                                contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                                contentView.setPadding(5, 10, 0, 7);
+
+                                itemContentLayout.addView(sensorTitle);
+                                itemContentLayout.addView(contentView);
+                            }
+                            infoItemLayout.addView(itemContentLayout);
+                        }
+
+                    } else {
+                        for(int k = 0; k < contentJSON.length(); k++) {
+                            String item = contentJSON.get(k).toString();
+                            TextView contentView = new TextView(getActivity());
+                            contentView.setText(item);
+                            contentView.setTextColor(Color.parseColor("#666666"));
+                            contentView.setTypeface(null, Typeface.NORMAL);
+                            contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                            contentView.setPadding(5, 10, 0, 7);
+                            infoItemLayout.addView(contentView);
+                        }
                     }
+
                     homeLayout.addView(infoItemLayout);
                 }
 

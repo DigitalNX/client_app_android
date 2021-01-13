@@ -93,10 +93,10 @@ public class RelaysFragment extends Fragment {
     }
 
     private void turnRelayOn(int relayId) {
-        NetworkUtils.GETRequest(response -> {}, "/api/relays/" + Integer.toString(relayId) + "/on", queue);
+        NetworkUtils.GETRequest(response -> {}, "/api/relay/" + Integer.toString(relayId) + "/on", queue);
     }
 
     private void turnRelayOff(int relayId) {
-        NetworkUtils.GETRequest(response -> {}, "/api/relays/" + Integer.toString(relayId) + "/off", queue);
+        NetworkUtils.GETRequest(response -> {}, "/api/relay/" + Integer.toString(relayId) + "/off", queue);
     }
 }
